@@ -1,49 +1,40 @@
 package com.example.gez1;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.gez1.Fragments.FragmentAciklama;
 import com.example.gez1.Fragments.FragmentKonum;
 
-public class MyPagerAdapter extends FragmentPagerAdapter {
+public class MyPagerAdapter extends FragmentStateAdapter{
 
-    public MyPagerAdapter(FragmentManager fm) {
-        super(fm);
+    public MyPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+        super(fragmentActivity);
     }
 
+    @NonNull
     @Override
-    public Fragment getItem(int position) {
-        // Her bir sekme için ilgili fragment'ı döndürün
-        switch (position) {
+    public Fragment createFragment(int position) {
+        switch (position){
             case 0:
                 return new FragmentAciklama();
             case 1:
                 return new FragmentKonum();
-            // Diğer sekme durumları ekleyebilirsiniz.
             default:
-                return null;
+                return new FragmentAciklama();
         }
     }
 
     @Override
-    public int getCount() {
-        // Toplam sekme sayısını döndürün
-        return 2; // Örneğin, 2 sekme
+    public int getItemCount() {
+        return 2;
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        // Her sekme için başlık belirleyin
-        switch (position) {
-            case 0:
-                return "Sekme 1";
-            case 1:
-                return "Sekme 2";
-            // Diğer sekme başlıklarını ekleyebilirsiniz.
-            default:
-                return null;
-        }
-    }
+
+
+
 }

@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatCallback;
 import androidx.cardview.widget.CardView;
+
+import com.example.gez1.Fragments.FragmentAciklama;
 import com.example.gez1.Models.MyModel;
 import com.google.gson.internal.LinkedTreeMap;
 import java.util.ArrayList;
@@ -101,6 +103,9 @@ public class CustomListAdapter extends BaseAdapter {
 
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 c.startActivity(intent);
+
+
+
 
             }
         });
