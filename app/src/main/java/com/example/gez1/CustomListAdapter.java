@@ -88,7 +88,7 @@ public class CustomListAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(c.getApplicationContext(), "Tıklandı"+getItemId(Integer.parseInt(yerID)), Toast.LENGTH_SHORT).show();
-                Toast.makeText(c.getApplicationContext(), "Tıklandı" + getYerIsim(yerIsim), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(c.getApplicationContext(), "Tıklandı" + getYerIsim(yerIsim), Toast.LENGTH_SHORT).show();
 
 
 

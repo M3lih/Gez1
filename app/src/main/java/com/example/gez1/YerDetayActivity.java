@@ -11,12 +11,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.gez1.Fragments.FragmentAciklama;
+import com.example.gez1.Fragments.FragmentKonum;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -24,7 +27,7 @@ import com.squareup.picasso.Target;
 public class YerDetayActivity extends AppCompatActivity {
 
     CardView cardView;
-    TextView textView, textViewfragment;
+    TextView textView,txt;
     ImageView imageView;
 
     TabLayout tabLayout;
@@ -49,6 +52,8 @@ public class YerDetayActivity extends AppCompatActivity {
         String yerResim = intent.getStringExtra("yerResim");
 
 
+
+
         textView.setText(yerIsim);
         Picasso.get().load(yerResim).into(imageView);
 
@@ -58,6 +63,13 @@ public class YerDetayActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
+
+
+
 
 
 
@@ -105,6 +117,7 @@ public class YerDetayActivity extends AppCompatActivity {
 
 
     }
+
 
 
 
