@@ -3,6 +3,8 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+
+
     }
 }
 dependencyResolutionManagement {
@@ -10,9 +12,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
     }
-}
 
 rootProject.name = "Gez1"
-include(":app")
+include(":app")}
  

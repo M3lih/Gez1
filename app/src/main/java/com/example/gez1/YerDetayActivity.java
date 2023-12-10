@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
@@ -33,6 +34,7 @@ public class YerDetayActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     MyPagerAdapter myPagerAdapter;
+    ToggleButton begenbtn;
 
 
 
@@ -52,26 +54,11 @@ public class YerDetayActivity extends AppCompatActivity {
         String yerResim = intent.getStringExtra("yerResim");
 
 
-
-
         textView.setText(yerIsim);
         Picasso.get().load(yerResim).into(imageView);
 
 
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
 
 
     public void tanimla(){
@@ -82,6 +69,7 @@ public class YerDetayActivity extends AppCompatActivity {
         viewPager2 = findViewById(R.id.viewPager);
         myPagerAdapter = new MyPagerAdapter(this);
         viewPager2.setAdapter(myPagerAdapter);
+        begenbtn = findViewById(R.id.begenibtn);
 
 
 
@@ -119,7 +107,12 @@ public class YerDetayActivity extends AppCompatActivity {
     }
 
 
-
+    public void onCustomToggleClick(View view) {
+            if (begenbtn.isChecked()){
+                Toast.makeText(this, "Beğenildi", Toast.LENGTH_SHORT).show();
+            }else
+                Toast.makeText(this, "Beğenilerden Çıkarıldı!", Toast.LENGTH_SHORT).show();
+    }
 
 
 }
