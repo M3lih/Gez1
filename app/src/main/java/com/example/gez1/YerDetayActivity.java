@@ -108,11 +108,23 @@ public class YerDetayActivity extends AppCompatActivity {
 
 
     public void onCustomToggleClick(View view) {
+        Intent intent = getIntent();
+        String yerIsim = intent.getStringExtra("yerIsim");
+        String yerID = intent.getStringExtra("yerID");
+        String yerAciklama = intent.getStringExtra("yerAciklama");
+        String yerKonum = intent.getStringExtra("yerKonum");
+        String yerKategori = intent.getStringExtra("yerKategori");
+        String yerResim = intent.getStringExtra("yerResim");
             if (begenbtn.isChecked()){
-                Toast.makeText(this, "Beğenildi", Toast.LENGTH_SHORT).show();
+
+
+                Toast.makeText(this, "Beğenildi"+yerID, Toast.LENGTH_SHORT).show();
+
             }else
-                Toast.makeText(this, "Beğenilerden Çıkarıldı!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Beğenilerden Çıkarıldı!"+yerID, Toast.LENGTH_SHORT).show();
     }
+
+
 
 
 }

@@ -15,4 +15,7 @@ public interface ApiClient {
     @GET("/izmir.php")
     Call<MyModel> getIzmirData();
 
+    @GET("/begeni.php")
+    Call<MyModel> getBegeniData();
+
 }

@@ -61,4 +61,9 @@ public class ApiClientBuilder {
         return getClient().create(ApiClient.class);
     }
 
+    public static ApiClient getBegeniClient() {
+        return getClient().create(ApiClient.class);
+    }
+
+
 }

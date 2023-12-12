@@ -30,5 +30,11 @@ public class ApiService {
         result.enqueue(callback);
     }
 
+    public void getBegeniData(Callback<MyModel> callback) {
+        ApiClient service = ApiClientBuilder.getBegeniClient();
+        Call<MyModel> result = service.getBegeniData();
+        result.enqueue(callback);
+    }
+
 
 }

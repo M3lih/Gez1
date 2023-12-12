@@ -27,6 +27,9 @@ public class MyModel {
     @SerializedName("yerResim")
     @Expose
     private String yerResim;
+    @SerializedName("kullaniciID")
+    @Expose
+    private String kullaniciID;
 
     public ArrayList getResults() {
         return results;
@@ -84,8 +87,16 @@ public class MyModel {
         this.yerResim = yerResim;
     }
 
+    public String getKullaniciID() {
+        return kullaniciID;
+    }
 
-    public MyModel(ArrayList results, String yerID, String yerIsim, String yerAciklama, String yerKonum, String yerKategori, String yerResim) {
+    public void setKullaniciID(String kullaniciID) {
+        this.kullaniciID = kullaniciID;
+    }
+
+
+    public MyModel(ArrayList results, String yerID, String yerIsim, String yerAciklama, String yerKonum, String yerKategori, String yerResim, String kullaniciID) {
         this.results = results;
         this.yerID = yerID;
         this.yerIsim = yerIsim;
@@ -93,5 +104,6 @@ public class MyModel {
         this.yerKonum = yerKonum;
         this.yerKategori = yerKategori;
         this.yerResim = yerResim;
+        this.kullaniciID = kullaniciID;
     }
 }

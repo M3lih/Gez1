@@ -7,7 +7,7 @@ import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity {
-    CardView gezCard;
+    CardView gezCard,begeniCard;
 
 
     @Override
@@ -27,11 +27,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        begeniCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, BegendiklerimActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
     public void tanimla(){
         gezCard = findViewById(R.id.gezCard);
+        begeniCard = findViewById(R.id.begeniCard);
     }
 
 
