@@ -11,7 +11,7 @@ public class ApiService {
 
         ApiClient service = ApiClientBuilder.getMGClient();
 
-        Call<MyModel> result =  service.getJSONData();
+        Call<MyModel> result = service.getJSONData();
 
         result.enqueue(callback);
 
@@ -30,11 +30,12 @@ public class ApiService {
         result.enqueue(callback);
     }
 
-    public void getBegeniData(Callback<MyModel> callback) {
-        ApiClient service = ApiClientBuilder.getBegeniClient();
-        Call<MyModel> result = service.getBegeniData();
+    public void getBegeniData(int kullaniciID, Callback<MyModel> callback) {
+        ApiClient service = ApiClientBuilder.getBegeniClient(); // ApiClientBuilder, Retrofit servisinizi oluşturduğunuz bir sınıf olmalıdır
+        Call<MyModel> result = service.getBegeniData(kullaniciID);
         result.enqueue(callback);
     }
+
 
 
 }

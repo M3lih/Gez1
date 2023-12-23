@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyModel {
     @SerializedName("results")
@@ -30,6 +31,7 @@ public class MyModel {
     @SerializedName("kullaniciID")
     @Expose
     private String kullaniciID;
+
 
     public ArrayList getResults() {
         return results;
@@ -96,6 +98,12 @@ public class MyModel {
     }
 
 
+
+
+
+
+
+
     public MyModel(ArrayList results, String yerID, String yerIsim, String yerAciklama, String yerKonum, String yerKategori, String yerResim, String kullaniciID) {
         this.results = results;
         this.yerID = yerID;
@@ -106,4 +114,5 @@ public class MyModel {
         this.yerResim = yerResim;
         this.kullaniciID = kullaniciID;
     }
+
 }

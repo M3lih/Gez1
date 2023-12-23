@@ -87,10 +87,6 @@ public class CustomListAdapter extends BaseAdapter {
         cardsehir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(c.getApplicationContext(), "Tıklandı"+getItemId(Integer.parseInt(yerID)), Toast.LENGTH_SHORT).show();
-                //Toast.makeText(c.getApplicationContext(), "Tıklandı" + getYerIsim(yerIsim), Toast.LENGTH_SHORT).show();
-
-
 
                 Intent intent = new Intent(c,YerDetayActivity.class);
                 intent.putExtra("yerIsim", yerIsim);

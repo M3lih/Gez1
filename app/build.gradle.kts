@@ -41,6 +41,8 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.8")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation ("com.google.guava:guava:30.1-jre")
+    implementation ("com.fasterxml.jackson.core:jackson-core:2.12.5")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.12.5")
 
 
     implementation("androidx.appcompat:appcompat:1.6.1")
