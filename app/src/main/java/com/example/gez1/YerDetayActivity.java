@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -21,9 +22,17 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.gez1.Fragments.FragmentAciklama;
 import com.example.gez1.Fragments.FragmentKonum;
+import com.example.gez1.Models.Result;
+import com.example.gez1.service.ApiClient;
+import com.example.gez1.service.ApiClientBuilder;
+import com.example.gez1.service.ApiService;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class YerDetayActivity extends AppCompatActivity {
 
@@ -36,6 +45,7 @@ public class YerDetayActivity extends AppCompatActivity {
     MyPagerAdapter myPagerAdapter;
     ToggleButton begenbtn;
 
+    String TAG = "YerDetayActivity";
 
 
     @Override
@@ -70,8 +80,6 @@ public class YerDetayActivity extends AppCompatActivity {
         myPagerAdapter = new MyPagerAdapter(this);
         viewPager2.setAdapter(myPagerAdapter);
         begenbtn = findViewById(R.id.begenibtn);
-
-
 
     }
 
@@ -115,16 +123,42 @@ public class YerDetayActivity extends AppCompatActivity {
         String yerKonum = intent.getStringExtra("yerKonum");
         String yerKategori = intent.getStringExtra("yerKategori");
         String yerResim = intent.getStringExtra("yerResim");
+
+
             if (begenbtn.isChecked()){
 
+                Call<Result> x = ApiClientBuilder.getMGClient().getKullaniciEkle("2",yerID,yerAciklama,yerIsim,yerKonum,yerKategori,yerResim);
+                x.enqueue(new Callback<Result>() {
+                    @Override
+                    public void onResponse(Call<Result> call, Response<Result> response) {
+                        Log.i(TAG, "onResponse: "+response.body());
+                            Toast.makeText(getApplicationContext(), "Beğenildi" + yerID, Toast.LENGTH_SHORT).show();
+                    }
 
-                Toast.makeText(this, "Beğenildi"+yerID, Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onFailure(Call<Result> call, Throwable t) {
 
-            }else
+                    }
+                });
+
+            }else{
                 Toast.makeText(this, "Beğenilerden Çıkarıldı!"+yerID, Toast.LENGTH_SHORT).show();
+                Call<Result> sil = ApiClientBuilder.getSil().getSil("2",yerID);
+                sil.enqueue(new Callback<Result>() {
+
+                    @Override
+                    public void onResponse(Call<Result> call, Response<Result> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Result> call, Throwable t) {
+
+                    }
+                });
+
+            }
     }
-
-
 
 
 }
