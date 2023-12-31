@@ -3,15 +3,19 @@ package com.example.gez1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.gez1.Models.MyModel;
+import com.example.gez1.Models.Result;
 import com.example.gez1.service.ApiClient;
 import com.example.gez1.service.ApiClientBuilder;
 import com.example.gez1.service.ApiService;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +40,8 @@ public class BegendiklerimActivity extends AppCompatActivity {
     ArrayList<MyModel> begeniList = new ArrayList<>();
     ArrayList kullanici = new ArrayList<>();
     int kullaniciID = 2;
+    FirebaseUser user;
+    FirebaseAuth auth;
 
 
     static CustomListAdapter customListAdapter;
@@ -47,6 +53,8 @@ public class BegendiklerimActivity extends AppCompatActivity {
 
         tanimla();
         getdata();
+
+
     }
 
 
@@ -54,40 +62,45 @@ public class BegendiklerimActivity extends AppCompatActivity {
         cardsehir = findViewById(R.id.cardsehir);
         textView = findViewById(R.id.txtYerIsim);
         listView = findViewById(R.id.listShowJSONDataBegeni);
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
 
     }
 
 
     public void getdata() {
-        try {
 
-            new ApiService().getBegeniData(kullaniciID,new Callback<MyModel>() {
-                @Override
-                public void onResponse(Call<MyModel> call, Response<MyModel> response) {
+       try {
+        String userID = user.getUid();
+        Log.i(TAG, "onCreate:userıd:"+userID);
+        new ApiService().getBegeniData("'"+userID+"'",new Callback<MyModel>() {
+            @Override
+            public void onResponse(Call<MyModel> call, Response<MyModel> response) {
 
-                    Log.d(TAG, "onResponse: response..." + response.body());
-
-
-                    //This will get result part from dummy JSON response
-                    dummyData = response.body().getResults();
-
-                    Log.i(TAG, "sonuc"+dummyData);
+                Log.d(TAG, "onResponse: response..." + response.body());
 
 
+                //This will get result part from dummy JSON response
+                dummyData = response.body().getResults();
 
-                    createListView();
-                }
+                Log.i(TAG, "sonuc"+dummyData);
 
-                @Override
-                public void onFailure(Call<MyModel> call, Throwable t) {
 
-                    Log.d(TAG, "onFailure: response...");
-                }
-            });
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+                createListView();
+            }
+
+            @Override
+            public void onFailure(Call<MyModel> call, Throwable t) {
+
+                Log.d(TAG, "onFailure: response...");
+            }
+        });
+
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }
+
     }
 
 
@@ -101,6 +114,37 @@ public class BegendiklerimActivity extends AppCompatActivity {
         listView.setAdapter(customListAdapter);
 
     }
+
+
+
+
+
+
+
+
+
+//    String userID = user.getUid();
+//    Call<MyModel> x = ApiClientBuilder.getBegeniClient().getBegeniData(userID);
+//        x.enqueue(new Callback<MyModel>() {
+//        @Override
+//        public void onResponse(Call<MyModel> call, Response<MyModel> response) {
+//            Log.d(TAG, "onResponse: response..." + response.body());
+//
+//            //This will get result part from dummy JSON response
+//            dummyData = response.body().getResults();
+//
+//            Log.i(TAG, "sonuc"+dummyData);
+//
+//            createListView();
+//
+//        }
+//
+//        @Override
+//        public void onFailure(Call<MyModel> call, Throwable t) {
+//            Log.d(TAG, "onFailure: response...");
+//
+//        }
+//    });
 
 
 

@@ -26,7 +26,8 @@ public interface ApiClient {
 
 
     @GET("/begeni.php")
-    Call<MyModel> getBegeniData(@Query("kullaniciID") int kullaniciID);
+    Call<MyModel> getBegeniData(@Query("kullaniciID") String kullaniciID);
+
 
 
     @FormUrlEncoded

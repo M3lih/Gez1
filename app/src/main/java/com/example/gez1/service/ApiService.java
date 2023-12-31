@@ -31,11 +31,12 @@ public class ApiService {
         result.enqueue(callback);
     }
 
-    public void getBegeniData(int kullaniciID, Callback<MyModel> callback) {
+    public void getBegeniData(String kullaniciID, Callback<MyModel> callback) {
         ApiClient service = ApiClientBuilder.getBegeniClient(); // ApiClientBuilder, Retrofit servisinizi oluşturduğunuz bir sınıf olmalıdır
         Call<MyModel> result = service.getBegeniData(kullaniciID);
         result.enqueue(callback);
     }
+
 
     public void getKullaniciEkle(String kullaniciID,String yerID,String yerAciklama,String yerIsim,String yerKonum,String yerKategori,String yerResim,Callback<Result> callback) {
         ApiClient service = ApiClientBuilder.getKullaniciEkleClient(); // ApiClientBuilder, Retrofit servisinizi oluşturduğunuz bir sınıf olmalıdır

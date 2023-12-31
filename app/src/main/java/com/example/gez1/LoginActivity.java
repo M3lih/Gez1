@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextView kayitText,sifreResetText;
     private Button girisBtn;
     ProgressBar progressBar;
+
+    String TAG = "login";
 
 
 
@@ -95,6 +98,8 @@ public class LoginActivity extends AppCompatActivity {
                 email = String.valueOf(girisEmail.getText().toString());
                 password = String.valueOf(girisPassword.getText().toString());
 
+                Log.i(TAG, "onClick:"+email+ password);
+
                 if (TextUtils.isEmpty(email)){
                     Toast.makeText(LoginActivity.this, "Email Giriniz", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
@@ -118,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();
+
                                 } else {
 
                                     Toast.makeText(LoginActivity.this, "Hatali Giris.",

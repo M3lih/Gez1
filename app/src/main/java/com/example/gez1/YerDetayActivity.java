@@ -27,6 +27,8 @@ import com.example.gez1.service.ApiClient;
 import com.example.gez1.service.ApiClientBuilder;
 import com.example.gez1.service.ApiService;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -44,6 +46,9 @@ public class YerDetayActivity extends AppCompatActivity {
     ViewPager2 viewPager2;
     MyPagerAdapter myPagerAdapter;
     ToggleButton begenbtn;
+
+    FirebaseUser user;
+    FirebaseAuth auth;
 
     String TAG = "YerDetayActivity";
 
@@ -80,6 +85,8 @@ public class YerDetayActivity extends AppCompatActivity {
         myPagerAdapter = new MyPagerAdapter(this);
         viewPager2.setAdapter(myPagerAdapter);
         begenbtn = findViewById(R.id.begenibtn);
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
 
     }
 
@@ -123,11 +130,11 @@ public class YerDetayActivity extends AppCompatActivity {
         String yerKonum = intent.getStringExtra("yerKonum");
         String yerKategori = intent.getStringExtra("yerKategori");
         String yerResim = intent.getStringExtra("yerResim");
-
+        String userID = user.getUid();
 
             if (begenbtn.isChecked()){
 
-                Call<Result> x = ApiClientBuilder.getMGClient().getKullaniciEkle("2",yerID,yerAciklama,yerIsim,yerKonum,yerKategori,yerResim);
+                Call<Result> x = ApiClientBuilder.getMGClient().getKullaniciEkle(userID,yerID,yerAciklama,yerIsim,yerKonum,yerKategori,yerResim);
                 x.enqueue(new Callback<Result>() {
                     @Override
                     public void onResponse(Call<Result> call, Response<Result> response) {
@@ -143,7 +150,7 @@ public class YerDetayActivity extends AppCompatActivity {
 
             }else{
                 Toast.makeText(this, "Beğenilerden Çıkarıldı!"+yerID, Toast.LENGTH_SHORT).show();
-                Call<Result> sil = ApiClientBuilder.getSil().getSil("2",yerID);
+                Call<Result> sil = ApiClientBuilder.getSil().getSil(userID,yerID);
                 sil.enqueue(new Callback<Result>() {
 
                     @Override
