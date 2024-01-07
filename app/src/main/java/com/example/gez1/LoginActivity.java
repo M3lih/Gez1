@@ -1,6 +1,7 @@
 package com.example.gez1;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,11 +15,20 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthCredential;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,8 +36,12 @@ public class LoginActivity extends AppCompatActivity {
     private EditText girisEmail,girisPassword;
     private TextView kayitText,sifreResetText;
     private Button girisBtn;
+    private SignInButton googleBtn;
     ProgressBar progressBar;
 
+
+    GoogleSignInClient mGoogleSignInClient;
+    int RC_SIGN_IN = 20;
     String TAG = "login";
 
 
@@ -58,8 +72,25 @@ public class LoginActivity extends AppCompatActivity {
         kayitText = findViewById(R.id.kayitoltext);
         sifreResetText = findViewById(R.id.sifreReset);
         progressBar = findViewById(R.id.progressBar);
+        googleBtn = findViewById(R.id.googlebtn);
 
 
+
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("802516051822-fr6esl33sqdi0euv4vvrsmhg5kl3romn.apps.googleusercontent.com")
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
+
+
+        googleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                googleSignIn();
+            }
+        });
 
         kayitText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +166,56 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void googleSignIn(){
+
+        Intent intent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(intent,RC_SIGN_IN);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RC_SIGN_IN){
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+
+            try {
+
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuth(account.getIdToken());
+
+            }catch (Exception e){
+                Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
+    private void firebaseAuth(String idToken) {
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken,null);
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (task.isSuccessful()){
+
+                            FirebaseUser user = auth.getCurrentUser();
+
+                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                            startActivity(intent);
+
+                        }else {
+                            Toast.makeText(LoginActivity.this,"bir seyler ters gitti!",Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
 
     }
 }

@@ -39,6 +39,8 @@ public interface ApiClient {
     @POST("/sil.php")
     Call<Result> getSil(@Field("kullaniciID") String kullaniciID, @Field("yerID") String yerID);
 
+    @GET("/oneri.php")
+    Call<MyModel>getOneriData();
 
 
 }

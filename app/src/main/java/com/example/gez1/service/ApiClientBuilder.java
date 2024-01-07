@@ -65,8 +65,9 @@ public class ApiClientBuilder {
         return getClient().create(ApiClient.class);
     }
 
-
     public static ApiClient getKullaniciEkleClient(){return getClient().create((ApiClient.class));}
+
+    public static ApiClient getOneriClient(){return getClient().create(ApiClient.class);}
 
     public static ApiClient getSil(){return getClient().create((ApiClient.class));}
 

@@ -51,6 +51,12 @@ public class ApiService {
     }
 
 
+    public void getOneriData(Callback<MyModel> callback){
+        ApiClient service = ApiClientBuilder.getOneriClient();
+        Call<MyModel> result = service.getOneriData();
+        result.enqueue(callback);
+    }
+
 
 
 }

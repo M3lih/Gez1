@@ -89,6 +89,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:id="@+id/oneriCard"
                 app:cardElevation="20dp"
                 app:cardCornerRadius="20dp">
                 <RelativeLayout
