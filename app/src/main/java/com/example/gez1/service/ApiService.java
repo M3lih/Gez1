@@ -57,6 +57,12 @@ public class ApiService {
         result.enqueue(callback);
     }
 
+    public void getTumyerlerData(int sehirID,String yerKategori, Callback<MyModel> callback){
+        ApiClient service = ApiClientBuilder.getTumyerlerClient();
+        Call<MyModel> result = service.getTumyerlerData(sehirID,yerKategori);
+        result.enqueue(callback);
+    }
+
 
 
 }

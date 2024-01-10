@@ -11,14 +11,51 @@
 
 
 
-    <ListView
-        android:clickable="true"
-        android:id="@+id/listShowJSONData2"
+
+    <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:focusable="true" />
+        android:id="@+id/ankaraTab"
+        android:layout_margin="20dp">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/istanbulGezi"
+            android:text="Gezi"/>
+
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/istanbulEgitim"
+            android:text="Egitim"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/istanbulRestoran"
+            android:text="Restoran"/>
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerankara"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
+
+
+<!--    <ListView-->
+<!--        android:clickable="true"-->
+<!--        android:id="@+id/listShowJSONData2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:focusable="true" />-->
 
 
 </LinearLayout>

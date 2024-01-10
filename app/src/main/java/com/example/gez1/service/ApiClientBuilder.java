@@ -71,6 +71,8 @@ public class ApiClientBuilder {
 
     public static ApiClient getSil(){return getClient().create((ApiClient.class));}
 
+    public static ApiClient getTumyerlerClient(){return  getClient().create((ApiClient.class));}
+
 
 
 

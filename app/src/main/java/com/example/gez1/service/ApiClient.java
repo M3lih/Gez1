@@ -28,6 +28,8 @@ public interface ApiClient {
     @GET("/begeni.php")
     Call<MyModel> getBegeniData(@Query("kullaniciID") String kullaniciID);
 
+    @GET("/tumyerler.php")
+    Call<MyModel> getTumyerlerData(@Query("yerID") int sehirID,@Query("yerKategori") String yerKategori);
 
 
     @FormUrlEncoded

@@ -1,6 +1,7 @@
 package com.example.gez1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Toolbar;
 
 import com.example.gez1.Models.MyModel;
 import com.example.gez1.service.ApiService;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import retrofit2.Call;
@@ -28,6 +30,10 @@ public class AnkaraActivity extends AppCompatActivity {
     ArrayList<MyModel> dummyData = new ArrayList<>();
     static CustomListAdapter customListAdapter;
 
+    ViewPager viewPager;
+    TabLayout tabLayout;
+    private int sehirID = 06;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +43,21 @@ public class AnkaraActivity extends AppCompatActivity {
         tanimla();
         getdata();
 
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+
+        // Connect the TabLayout with the ViewPager
+        tabLayout.setupWithViewPager(viewPager);
+
     }
 
 
     public void tanimla() {
+        //listView = findViewById(R.id.list);
         cardsehir = findViewById(R.id.cardsehir);
         textView = findViewById(R.id.txtYerIsim);
+        tabLayout = findViewById(R.id.ankaraTab);
+        viewPager = findViewById(R.id.viewPagerankara);
     }
 
     public void getdata() {
@@ -76,10 +91,13 @@ public class AnkaraActivity extends AppCompatActivity {
     public void createListView() {
         //Send JSON object list to custom BaseAdapter
         customListAdapter = new CustomListAdapter(getApplicationContext(), dummyData);
-        listView = (ListView) findViewById(R.id.listShowJSONData2);
-        listView.setAdapter(customListAdapter);
+        //listView.setAdapter(customListAdapter);
 
 
+    }
+
+    public int getMyData(){
+        return sehirID;
     }
 
 

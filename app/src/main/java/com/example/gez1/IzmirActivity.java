@@ -1,6 +1,7 @@
 package com.example.gez1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Toolbar;
 
 import com.example.gez1.Models.MyModel;
 import com.example.gez1.service.ApiService;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import retrofit2.Call;
@@ -28,6 +30,10 @@ public class IzmirActivity extends AppCompatActivity {
     ArrayList<MyModel> dummyData = new ArrayList<>();
     static CustomListAdapter customListAdapter;
 
+    ViewPager viewPager;
+    TabLayout tabLayout;
+    private int sehirID = 35;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +42,20 @@ public class IzmirActivity extends AppCompatActivity {
         //Make a server call and get data
         tanimla();
         getdata();
+
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+
+        // Connect the TabLayout with the ViewPager
+        tabLayout.setupWithViewPager(viewPager);
     }
 
 
     public void tanimla() {
         cardsehir = findViewById(R.id.cardsehir);
         textView = findViewById(R.id.txtYerIsim);
+        viewPager = findViewById(R.id.viewPagerizmir);
+        tabLayout = findViewById(R.id.izmirTab);
     }
 
     public void getdata() {
@@ -75,10 +89,14 @@ public class IzmirActivity extends AppCompatActivity {
     public void createListView() {
         //Send JSON object list to custom BaseAdapter
         customListAdapter = new CustomListAdapter(getApplicationContext(), dummyData);
-        listView = (ListView) findViewById(R.id.listShowJSONData3);
-        listView.setAdapter(customListAdapter);
+        //listView = (ListView) findViewById(R.id.listShowJSONData3);
+        //listView.setAdapter(customListAdapter);
     }
 
+
+    public int getMyData(){
+        return sehirID;
+    }
 
 }
 
