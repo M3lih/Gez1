@@ -1,6 +1,7 @@
 package com.example.gez1;
 //import android.support.v7.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -22,6 +23,8 @@ import com.example.gez1.service.ApiService;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +39,7 @@ public class IstanbulActivity extends AppCompatActivity {
     ViewPager viewPager;
     TabLayout tabLayout;
     private int sehirID = 34;
+    SearchView searchView;
 
 
     @Override
@@ -67,7 +71,20 @@ public class IstanbulActivity extends AppCompatActivity {
         //listView = findViewById(R.id.listShowJSONData);
         viewPager = findViewById(R.id.viewPageristanbul);
         tabLayout = findViewById(R.id.istanbulTab);
-
+//        searchView = findViewById(R.id.searchView);
+//        searchView.clearFocus();
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                filteredList(newText);
+//                return true;
+//            }
+//        });
     }
 
     public void getdata() {
@@ -82,6 +99,7 @@ public class IstanbulActivity extends AppCompatActivity {
 
                     //This will get result part from dummy JSON response
                     dummyData = response.body().getResults();
+                    Log.i(TAG, "istdummy:"+dummyData);
                     createListView();
                 }
 
@@ -117,8 +135,22 @@ public class IstanbulActivity extends AppCompatActivity {
     }
 
 
+//    private void filteredList(String text){
+//        ArrayList<MyModel> filteredList = new ArrayList<>();
+//        for(MyModel item : dummyData){
+//            if(item.getYerIsim().toLowerCase().contains(text.toLowerCase())){
+//                filteredList.add(item);
+//            }
+//        }
+//
+//        if (filteredList.isEmpty()){
+//            Toast.makeText(this,"Yer Bulunamadi!",Toast.LENGTH_SHORT).show();
+//        }else {
+//            customListAdapter.setFilteredList(filteredList);
+//        }
+//    }
+//
 
-    
 
 
 

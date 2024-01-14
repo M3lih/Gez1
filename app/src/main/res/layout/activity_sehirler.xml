@@ -80,6 +80,7 @@
                         android:layout_width="340dp"
                         android:layout_height="86dp"
                         android:id="@+id/istanbulimg"
+                        android:scaleType="centerCrop"
                         android:layout_marginTop="16dp"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -124,6 +125,7 @@
                         android:layout_width="340dp"
                         android:layout_height="86dp"
                         android:id="@+id/beautyImage"
+                        android:scaleType="centerCrop"
                         android:layout_marginTop="15dp"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>

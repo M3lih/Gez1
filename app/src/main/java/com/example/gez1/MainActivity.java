@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity {
-    CardView gezCard,begeniCard,oturumCard,cikisCard,oneriCard;
+    CardView gezCard,begeniCard,oturumCard,cikisCard,oneriCard,profilCard;
     FirebaseAuth auth;
     FirebaseUser user;
     String TAG = "main";
@@ -120,6 +120,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        profilCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProfilActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
@@ -129,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
         oturumCard = findViewById(R.id.oturumCard);
         cikisCard = findViewById(R.id.cikisCard);
         oneriCard = findViewById(R.id.oneriCard);
+        profilCard = findViewById(R.id.profilCard);
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();

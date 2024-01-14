@@ -21,6 +21,8 @@ import com.example.gez1.Fragments.FragmentAciklama;
 import com.example.gez1.Models.MyModel;
 import com.google.gson.internal.LinkedTreeMap;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.squareup.picasso.Picasso;
 
 
@@ -110,5 +112,9 @@ public class CustomListAdapter extends BaseAdapter {
         return view;
     }
 
+    public void setFilteredList(ArrayList<MyModel>filteredList){
+        this.users = filteredList;
+        notifyDataSetChanged();
+    }
 
 }
